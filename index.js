@@ -32,4 +32,13 @@ app.use('/api/questions', questionRoutes);
 // app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`Server running on port ${PORT}`));
+const server = app.listen(PORT, () => {
+    console.log(`App running running on port ${PORT}`);
+});
+process.on('unhandledRejection', (err) => {
+    console.log(err.name, err.message);
+    server.close(() => {
+        console.log('unhandledRejection!! shutting down...');
+        process.exit(1);
+    });
+});
