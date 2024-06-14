@@ -14,9 +14,7 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors({
-    origin: 'https://client-phi-lemon.vercel.app' // السماح بالطلبات القادمة من Vercel
-  }));
+app.use(cors());
 app.options('*', cors());
 app.disable("x-powered-by");
 
